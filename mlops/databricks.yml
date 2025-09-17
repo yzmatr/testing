@@ -1,0 +1,62 @@
+bundle:
+  name: frogid-ml-15species
+
+# Python wheel artifact configuration - simplified approach
+# We'll install dependencies via PyPI instead of using a wheel for now
+sync:
+  paths:
+    - ../experiments/
+    - ../mlops/
+    - ../evaluation_notebooks/
+    - ../inference_notebooks/
+    - ../requirements.txt
+    - ../dashboard/
+    - ../deployment/
+    - ../serving_requirements.txt
+
+variables:
+  experiment_name:
+    description: MLflow experiment name for frog classification
+    default: /Users/${workspace.current_user.userName}/${bundle.target}-birdnet_averaging_3xotherspecies
+  model_name:
+    description: Model name for the frog classification model
+    default: frogid-ml-birdnet-model
+  catalog_name:
+    description: The catalog name to save the trained model
+  job_cluster_id:
+    description: job_cluster_id
+    
+include:
+  # Only include ML artifacts resource for MLflow tracking and model registry
+  - ./resources/batch-inference-workflow-resource.yml
+  - ./resources/ml-artifacts-resource.yml
+  - ./resources/model-workflow-resource.yml
+  #- ./resources/feature-engineering-workflow-resource.yml
+
+# Deployment Target specific values for workspace
+targets:
+  dev:
+    mode: development
+    default: true
+    variables:
+      catalog_name: dev
+      job_cluster_id: 0903-035647-j7ea274w
+    workspace:
+      host: https://dbc-77c47724-d45e.cloud.databricks.com
+      #profile: yulin_aus_museum_local
+
+  staging:
+    variables:
+      catalog_name: staging
+      job_cluster_id: 0903-035647-j7ea274w
+    workspace:
+      host: https://dbc-77c47724-d45e.cloud.databricks.com
+      #profile: yulin_aus_museum_local
+
+  prod:
+    variables:
+      catalog_name: prod
+      job_cluster_id: 0905-013120-tav45qpt
+    workspace:
+      host: https://dbc-3a527b0b-4e27.cloud.databricks.com
+      #profile: yulin_aus_museum_local

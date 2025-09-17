@@ -1,0 +1,38 @@
+common_permissions: &permissions
+  permissions:
+    - level: CAN_VIEW
+      group_name: users
+
+    - level: CAN_MANAGE_RUN
+      group_name: Matr_Group_DS
+
+    - level: CAN_MANAGE_RUN
+      group_name: Aus_Museum_DS
+resources:
+  jobs:
+    model_training_job:
+      name: ${bundle.target}-mlops-model-training-job
+      #existing_cluster_id: 0903-035647-j7ea274w
+      tasks:
+        - task_key: Train
+          existing_cluster_id: ${var.job_cluster_id}
+          notebook_task:
+            notebook_path: ../../experiments/birdnet-average-3s-chunk-embeddings.ipynb
+
+            base_parameters:
+              env: ${bundle.target}
+              model_name: ${var.catalog_name}.mlops.${var.model_name}
+        - task_key: ModelDeployment
+          #job_cluster_key: model_training_job_cluster
+          existing_cluster_id: ${var.job_cluster_id}
+          depends_on:
+            - task_key: Train
+            
+          notebook_task:
+            notebook_path: ../../deployment/model_deployment/notebooks/ModelDeployment.ipynb
+            base_parameters:
+              env: ${bundle.target}
+              # git source information of current ML resource deployment. It will be persisted as part of the workflow run
+              git_source_info: url:${bundle.git.origin_url}; branch:${bundle.git.branch}; commit:${bundle.git.commit}
+      <<: *permissions
+

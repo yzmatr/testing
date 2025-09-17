@@ -1,0 +1,78 @@
+/***********************************************************
+* IMPROVE BASELINE STREAMLIT STYLES (UNIVERSAL)
+************************************************************/
+
+.stMetric {
+    background-color: #008080;
+}
+
+.stMetric label p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.stElementContainer {
+    width: 100% !important;
+}
+
+.stElementContainer .stRadio {
+    padding: 20px;
+    border-bottom: 2px solid rgba(250, 250, 250, 0.2)
+}
+
+.stElementContainer .stRadio > div[role="radiogroup"] {
+    flex-wrap: nowrap;
+}
+
+.stTabs div[role="tablist"] button {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+[data-testid="stMetricDelta"] {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+[data-testid="stMetricDelta"] svg {
+    display: none;
+}
+
+div[data-testid="stHorizontalBlock"] {
+    margin-top: 1rem;
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    padding: 0px;
+    border-width: 2px;
+}
+
+/***********************************************************
+* CUSTOM UI COMPONENTS
+************************************************************/
+
+.card-header {
+    background-color: #008080; /* Teal */
+    border-radius: calc(0.5rem - 2px);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    padding: 1.5rem;
+}
+
+.card-header .card-title {
+    font-size: 3rem;
+    padding: 0px !important;
+}
+
+.card-header .card-subtitle {
+    font-size: 1.5rem;
+}
+
+.card-header .card-desc {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.5rem !important;
+    font-style: italic;
+}
+
+.general-padding {
+    padding: 1rem;
+}

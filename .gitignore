@@ -1,0 +1,75 @@
+# Data
+data/*
+
+# Data & model artifacts
+*.npz
+*.zip
+*.tar.gz
+*.aac
+*.wav
+*.mp3
+*.pt
+*.h5
+*.ckpt
+*.csv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry virtual environment
+.frogid/
+poetry.lock
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode settings
+.vscode/
+
+# macOS metadata
+.DS_Store
+
+# Python virtualenv (if not using poetry .venv)
+env/
+venv/
+
+# Python virtual environments
+python3.11-frogid/
+
+# Logs
+*.log
+
+# pyenv / pipenv / poetry files not tracked
+.python-version
+
+# Secrets or credentials (if any)
+.env
+.env.*
+
+# Test coverage reports
+htmlcov/
+coverage.xml
+.cache/
+
+# MLflow artifacts - ignore run contents but keep structure
+# Keep: mlops/mlflow/tracking.db (the database)
+# Ignore: all run artifacts and temporary files
+mlruns/
+artifacts/
+mlflow/artifacts/
+
+# BirdNET model files
+birdnet_models/
+
+
+# source seperation models (very large) - placement to be moved at a later date
+bird_mixit_model_checkpoints/
+
+#frog_data in adhoc
+adhoc_notebooks/frog_data/
+adhoc_notebooks/mixed_VE.csv
+adhoc_notebooks/bkg_noise.csv
+
+

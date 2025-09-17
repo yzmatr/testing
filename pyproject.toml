@@ -1,0 +1,51 @@
+[tool.poetry]
+name = ".frogid"
+version = "0.1.0"
+description = "FrogID ML classification pipeline using BirdNET embeddings"
+authors = ["Saleem Ameen <saleemameenx@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "mlops" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.3"
+numpy = "^1.26.4"
+scikit-learn = "^1.6.1"
+librosa = "^0.11.0"
+soundfile = "^0.13.1"
+pydub = "^0.25.1"
+# Use generic tensorflow for Databricks (no Apple Silicon specific packages)
+tensorflow = ">=2.16.0"
+matplotlib = ">=3.10.1"
+seaborn = "^0.13.2"
+mlflow = "^2.22.0"
+tqdm = "^4.67.1"
+requests = "^2.32.3"
+birdnetlib = "^0.18.0"
+jupyter = "^1.0.0"
+notebook = "^7.4.3"
+jupyterlab = "^4.4.3"
+tensorflow-macos = "^2.16.2"
+tensorflow-metal = "^1.2.0"
+noisereduce = "^3.0.3"
+millify = "^0.1.1"
+plotly = "^6.2.0"
+pydot = "^4.0.1"
+graphviz = "^0.21"
+tabulate = "^0.9.0"
+dacite = "^1.9.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+
+# Entry points for Databricks jobs
+tensorflow-macos = "^2.16.2"
+tensorflow-metal = "^1.2.0"
+streamlit = "^1.46.1"
+[tool.poetry.scripts]
+train_birdnet = "mlops.training.train_birdnet_element_wise_averaging:main"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
